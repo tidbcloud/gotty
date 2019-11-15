@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+args=( -P 3306 -u root --prompt='TiDB (\u) [\d]>\ ' )
+args+=( "$@" )
+err=0
+while true; do
+    if ! read -r -s -t 10 -p 'TiDB root password: ' password; then
+       err=1
+       break
+    fi
+    command mysql "${args[@]}" --password="$password" && break
+done
+echo "Closing connection."
+exit "$err"
