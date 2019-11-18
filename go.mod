@@ -14,3 +14,5 @@ require (
 	github.com/stretchr/testify v1.4.0 // indirect
 	github.com/yudai/hcl v0.0.0-20151013225006-5fa2393b3552
 )
+
+replace github.com/yudai/gotty => github.com/kolbe/gotty
