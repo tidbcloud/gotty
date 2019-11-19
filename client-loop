@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-: ${PWTIMEOUT:=600}
+: "${PWTIMEOUT:=600}"
+PATH=/mariadb/bin:$PATH
 args=( -P 3306 -u root --protocol=tcp --prompt='TiDB (\u) [\d]>\ ' -A )
 args+=( "$@" )
 err=0
@@ -11,6 +12,11 @@ t(){ tput -Txterm-256color "$@"; }
 msg="$(t bold; t setaf 4)Welcome to TiDB!$(t sgr0)
 
 Plese enter your TiDB root password to log in to a client shell.
+
+For TiDB Documentation, please see https://pingcap.com/docs/.
+
+Questions? Join us in TiDB Community Slack at https://pingcap.com/tidbslack/.
+
 "
 
 printf %s\\n "$msg"
