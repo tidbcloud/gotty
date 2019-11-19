@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 : ${PWTIMEOUT:=600}
-args=( -P 3306 -u root --prompt='TiDB (\u) [\d]>\ ' )
+args=( -P 3306 -u root --protocol=tcp --prompt='TiDB (\u) [\d]>\ ' -A )
 args+=( "$@" )
 err=0
 
