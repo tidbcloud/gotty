@@ -4,8 +4,15 @@ RUN git clone https://github.com/kolbe/gotty
 WORKDIR gotty
 RUN go build -a -o /
 
+
+
 FROM ubuntu:18.04
-RUN apt-get update && apt-get upgrade -y && apt-get install -y mysql-client less vim
+RUN apt-get update \
+    && apt-get install -y \
+       less \
+       mysql-client \
+       vim.tiny \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=gotty /gotty /
 ADD client-loop /client-loop

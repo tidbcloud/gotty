@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gotty
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gotty
+    spec:
+      containers:
+        - name: gotty
+          image: kolbe/gotty
+          ports:
+            - containerPort: 8080
+          args: [ "/client-loop", "-h", "172.31.252.14", "-P4000", "-u", "root" ]
