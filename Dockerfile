@@ -1,14 +1,12 @@
 FROM ubuntu:18.04 AS mysql-client
 RUN sed -i 's/# \(deb-src .*\)$/\1/' /etc/apt/sources.list && \
     apt-get update && \
-    apt-get build-dep -y mariadb-client && \
     apt-get install -y \
-        git \
-        gnutls-dev \
-        vim.tiny \
+        git cmake gcc g++ gnutls-dev libncurses5-dev libcurl4-gnutls-dev \
     && git clone https://github.com/kolbe/mariadb-server --depth=1 --branch=tidb-client /client \
-    && cmake -S /client -B /client -DWITHOUT_SERVER=ON -DCPACK_STRIP_FILES=ON -DMYSQL_TCP_PORT=4000 \
-    && make -C /client -j install \
+    && cd /client \
+    && cmake . -DWITHOUT_SERVER=ON -DCPACK_STRIP_FILES=ON -DMYSQL_TCP_PORT=4000 \
+    && make -j install \
     && rm -rf /client /var/lib/apt/lists/*
 
 
