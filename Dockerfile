@@ -5,11 +5,11 @@ RUN sed -i 's/# \(deb-src .*\)$/\1/' /etc/apt/sources.list && \
     apt-get install -y \
         git \
         gnutls-dev \
-        vim.tiny
-RUN    git clone https://github.com/kolbe/mariadb-server --depth=1 --branch=tidb-client /client
-WORKDIR /client
-RUN    cmake . -DWITHOUT_SERVER=ON -DCPACK_STRIP_FILES=ON -DMYSQL_TCP_PORT=4000
-RUN    make -j install
+        vim.tiny \
+    && git clone https://github.com/kolbe/mariadb-server --depth=1 --branch=tidb-client /client \
+    && cmake -S /client -B /client -DWITHOUT_SERVER=ON -DCPACK_STRIP_FILES=ON -DMYSQL_TCP_PORT=4000 \
+    && make -C /client -j install \
+    && rm -rf /client /var/lib/apt/lists/*
 
 
 
