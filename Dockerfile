@@ -8,7 +8,7 @@ RUN sed -i 's/# \(deb-src .*\)$/\1/' /etc/apt/sources.list && \
         vim.tiny
 RUN    git clone https://github.com/kolbe/mariadb-server --depth=1 --branch=tidb-client /client
 WORKDIR /client
-RUN    cmake . -DWITHOUT_SERVER=ON -DCPACK_STRIP_FILES=ON
+RUN    cmake . -DWITHOUT_SERVER=ON -DCPACK_STRIP_FILES=ON -DMYSQL_TCP_PORT=4000
 RUN    make -j install
 
 
