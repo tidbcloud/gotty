@@ -24,7 +24,6 @@ msg="
   ${red}████▌ ▗▟▌    ████▌   ▐████${reset}     For TiDB Documentation, see
   ${red}████▌▟██▌    ████▌   ▐████${reset}      https://pingcap.com/docs/
   ${red}████████▌    ████▌   ▐████${reset}
-  ${red}████████▌    ████▌   ▐████${reset}
   ${red}████████▌    ████▌   ▐████${reset}              Questions?
   ${red}████████▌    ████▌ ▄▟█████${reset}     Join TiDB Community Slack at
   ${red}▝▜███████▄   ████▙██████▛▘${reset}    https://pingcap.com/tidbslack/
