@@ -2,7 +2,7 @@
 
 : "${PWTIMEOUT:=600}"
 PATH=/mariadb/bin:$PATH
-args=( -P 3306 -u root --protocol=tcp --prompt='TiDB (\u) [\d]>\ ' -A )
+args=( -P 4000 -u root --protocol=tcp --prompt='TiDB (\u) [\d]>\ ' -A )
 args+=( "$@" )
 err=0
 
@@ -13,32 +13,28 @@ red=$(t setaf 1)
 reset=$(t sgr0)
 msg="
 
-${red}            ▄▄            ${reset}
-${red}         ▄▟████▙▖         ${reset}
-${red}      ▗▟██████████▄▖      ${reset}
-${red}   ▗▄██████▀▘▀▜██████▄▖   ${reset}
-${red}▗▄██████▛▀      ▀██████▙▄ ${reset}
-${red}█████▛▀        ▄▟█████████${reset}         $(t bold; t setaf 4)Welcome to TiDB!$reset
-${red}████▌        ▄██████▀▐████${reset}
-${red}████▌        █████▀  ▐████${reset}
-${red}████▌ ▗▟▌    ████▌   ▐████${reset}     For TiDB Documentation, see
-${red}████▌▟██▌    ████▌   ▐████${reset}      https://pingcap.com/docs/
-${red}████████▌    ████▌   ▐████${reset}
-${red}████████▌    ████▌   ▐████${reset}
-${red}████████▌    ████▌   ▐████${reset}              Questions?
-${red}████████▌    ████▌ ▄▟█████${reset}     Join TiDB Community Slack at
-${red}▝▜███████▄   ████▙██████▛▘${reset}    https://pingcap.com/tidbslack/
-${red}   ▀▜██████▙▖█████████▛▀  ${reset}
-${red}      ▀▜███████████▛▀     ${reset}
-${red}        ▝▀▜█████▛▀        ${reset}
-${red}           ▝▀▀▀           ${reset}
-
+  ${red}            ▄▄            ${reset}
+  ${red}         ▄▟████▙▖         ${reset}
+  ${red}      ▗▟██████████▄▖      ${reset}
+  ${red}   ▗▄██████▀▘▀▜██████▄▖   ${reset}
+  ${red}▗▄██████▛▀      ▀██████▙▄ ${reset}
+  ${red}█████▛▀        ▄▟█████████${reset}         $(t bold; t setaf 4)Welcome to TiDB!$reset
+  ${red}████▌        ▄██████▀▐████${reset}
+  ${red}████▌        █████▀  ▐████${reset}
+  ${red}████▌ ▗▟▌    ████▌   ▐████${reset}     For TiDB Documentation, see
+  ${red}████▌▟██▌    ████▌   ▐████${reset}      https://pingcap.com/docs/
+  ${red}████████▌    ████▌   ▐████${reset}
+  ${red}████████▌    ████▌   ▐████${reset}
+  ${red}████████▌    ████▌   ▐████${reset}              Questions?
+  ${red}████████▌    ████▌ ▄▟█████${reset}     Join TiDB Community Slack at
+  ${red}▝▜███████▄   ████▙██████▛▘${reset}    https://pingcap.com/tidbslack/
+  ${red}   ▀▜██████▙▖█████████▛▀  ${reset}
+  ${red}      ▀▜███████████▛▀     ${reset}
+  ${red}        ▝▀▜█████▛▀        ${reset}
+  ${red}           ▝▀▀▀           ${reset}
 
 
 Plese enter your TiDB root password to log in to a client shell.
-
-
-
 
 "
 
@@ -49,6 +45,7 @@ while true; do
        err=1
        break
     fi
+    echo
     command mysql "${args[@]}" --password="$password" && break
 done
 echo "Closing connection."

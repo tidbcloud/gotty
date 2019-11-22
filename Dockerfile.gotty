@@ -1,0 +1,6 @@
+FROM golang AS gotty
+WORKDIR /root
+RUN git clone https://github.com/kolbe/gotty
+WORKDIR gotty
+RUN go build -a -o / && ls /
+COPY /gotty ./
