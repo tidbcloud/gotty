@@ -39,13 +39,20 @@ Plese enter your TiDB root password to log in to a client shell.
 
 printf %s\\n "$msg"
 
-while true; do
-    if ! read -r -s -t "$PWTIMEOUT" -p 'TiDB root password: ' password; then
-       err=1
-       break
+if test "${MYSQL_PWD+defined}"; then
+    if ! command mysql "${args[@]}"; then
+        echo "Incorrect password given."
+        err=1
     fi
-    echo
-    command mysql "${args[@]}" --password="$password" && break
-done
+else
+    while true; do
+        if ! read -r -s -t "$PWTIMEOUT" -p 'TiDB root password: ' password; then
+           err=1
+           break
+        fi
+        echo
+        command mysql "${args[@]}" --password="$password" && break
+    done
+fi
 echo "Closing connection."
 exit "$err"
