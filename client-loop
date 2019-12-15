@@ -33,7 +33,7 @@ msg="
   ${red}           ▝▀▀▀           ${reset}
 
 
-Plese enter your TiDB root password to log in to a client shell.
+Plese enter your TiDB password to log in to a client shell.
 
 "
 
@@ -46,7 +46,7 @@ if test "${MYSQL_PWD+defined}"; then
     fi
 else
     while true; do
-        if ! read -r -s -t "$PWTIMEOUT" -p 'TiDB root password: ' password; then
+        if ! read -r -s -t "$PWTIMEOUT" -p 'TiDB password: ' password; then
            err=1
            break
         fi
