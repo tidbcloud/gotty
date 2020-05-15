@@ -18,7 +18,7 @@ msg="
   ${red}      ▗▟██████████▄▖      ${reset}
   ${red}   ▗▄██████▀▘▀▜██████▄▖   ${reset}
   ${red}▗▄██████▛▀      ▀██████▙▄ ${reset}
-  ${red}█████▛▀        ▄▟█████████${reset}         $(t bold; t setaf 4)Welcome to TiDB!$reset
+  ${red}█████▛▀        ▄▟█████████${reset}           $(t bold; t setaf 4)Welcome to TiDB!$reset
   ${red}████▌        ▄██████▀▐████${reset}
   ${red}████▌        █████▀  ▐████${reset}
   ${red}████▌ ▗▟▌    ████▌   ▐████${reset}     For TiDB Documentation, see
