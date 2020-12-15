@@ -15,4 +15,4 @@ require (
 	github.com/yudai/hcl v0.0.0-20151013225006-5fa2393b3552
 )
 
-replace github.com/yudai/gotty => github.com/kolbe/gotty master
+replace github.com/yudai/gotty => github.com/tidbcloud/gotty master
