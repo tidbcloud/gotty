@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-: "${PWTIMEOUT:=600}"
-PATH=/mariadb/bin:$PATH
-args=( -P 4000 -u root --protocol=tcp --prompt='TiDB (\u) [\d]>\ ' -A )
+args=( --password )
 args+=( "$@" )
 err=0
-
 
 t(){ tput -Txterm-256color "$@"; }
 
@@ -33,26 +30,13 @@ msg="
   ${red}           ▝▀▀▀           ${reset}
 
 
-Plese enter your TiDB password to log in to a client shell.
+Please enter your TiDB password to log in to a client shell.
 
 "
 
 printf %s\\n "$msg"
 
-if test "${MYSQL_PWD+defined}"; then
-    if ! command mysql "${args[@]}"; then
-        echo "Incorrect password given."
-        err=1
-    fi
-else
-    while true; do
-        if ! read -r -s -t "$PWTIMEOUT" -p 'TiDB password: ' password; then
-           err=1
-           break
-        fi
-        echo
-        command mysql "${args[@]}" --password="$password" && break
-    done
-fi
+command usql "${args[@]}"
+
 echo "Closing connection."
 exit "$err"
